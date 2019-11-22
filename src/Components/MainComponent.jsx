@@ -6,10 +6,11 @@ var arr = [{state: "Star",name: "Star Wars",id: "star%20wars"}, {state: "Harry",
 class MainComponent extends React.Component {
 
     state = {
-        films: []
+        movies: []
     }
 
     componentDidMount = async () =>{
+        let films = []
         arr.forEach(async(element) => {
             let url = "http://www.omdbapi.com/?apikey=ad6a24df&s=" + element.id
             let response = await fetch(url)
@@ -18,18 +19,21 @@ class MainComponent extends React.Component {
                 title: element.name,
                 info: filmsInfo.Search
             }
-            console.log(filmsState.title)
-            this.state.films.push(filmsState)
+            console.log(filmsState)
+            films.push(filmsState)
         })
-        console.log(this.state.films)
+        console.log(films)
+        await this.setState({
+            movies: films
+        })
+        console.log("state values", this.state.movies)
     }
 
     render(){
         return(
             <Container>
-                <h1>LOLacl</h1>
                 <Row>
-                    {this.state.films.map((film, index) => 
+                    {this.state.movies.map((film, index) => 
                         <ListFilms movie={film} key={index}/>
                     )}
                 </Row>

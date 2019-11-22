@@ -9,7 +9,6 @@ import SingleFilm from './SingleFilm'
 class ListFilms extends React.Component{
     state = {
     }
-
     render(){
         return(
             <Col md="12">
