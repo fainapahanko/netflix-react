@@ -7,14 +7,13 @@ import {Row, Col, ListGroup, ListGroupItem} from 'reactstrap'
 
 class DetailsPage extends React.Component{
     state = {
-        selectedFilm: "",
-        comments: ""
+        comments: []
     }
     componentDidMount = async () => {
         let username = "user15"
         let password = "sHHU5KWmVE26avC8"
         let token = btoa(username + ":" + password)
-        let response = await fetch("http://www.omdbapi.com/?apikey=ad6a24df&i=" + this.props.film.imdbID)
+
         let commentResponse = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/" + this.props.film.imdbID,{
             method: "GET",
             headers: {
@@ -22,14 +21,14 @@ class DetailsPage extends React.Component{
                 "Content-Type" : "application/json"
             }
         })
-        let filmInfo = await response.json()
         let commentInfo = await commentResponse.json()
-        console.log(filmInfo)
         await this.setState({
-            selectedFilm: filmInfo,
-            commentInfo: commentInfo
+            comments: commentInfo
         })
+        console.log("commentInfo",commentInfo)
+        console.log(this.state.comments)
     }
+
     render(){
         return(
             <Row className="details-page">
@@ -40,26 +39,22 @@ class DetailsPage extends React.Component{
                     <ListGroup>
                         <ListGroupItem>
                             Title:<br/>
-                            {this.state.selectedFilm.Title}</ListGroupItem>
+                            {this.props.film.Title}</ListGroupItem>
                         <ListGroupItem>
-                            Plot:<br/>{this.state.selectedFilm.Plot}</ListGroupItem>
+                            Plot:<br/>{this.props.film.Plot}</ListGroupItem>
                         <ListGroupItem>
-                            Cast:<br/>{this.state.selectedFilm.Actors}</ListGroupItem>
+                            Cast:<br/>{this.props.film.Actors}</ListGroupItem>
                         <ListGroupItem> 
-                            Director:<br/>{this.state.selectedFilm.Director}</ListGroupItem>
+                            Director:<br/>{this.props.film.Director}</ListGroupItem>
                         <ListGroupItem>
-                            Runtime: <br/>{this.state.selectedFilm.Runtime}</ListGroupItem>
+                            Runtime: <br/>{this.props.film.Runtime}</ListGroupItem>
                     </ListGroup>
                 </Col>
                 <Col md="4">
-                    <Row>
-                        <Col mad="12">
-                            {this.state.comments && <CommentList commentList={this.state.comments} />}
-                        </Col>
-                        <Col md="12">
-                            <AddComment />
-                        </Col>
-                    </Row>
+                    <AddComment filmId={this.props.film.imdbID}/>
+                </Col>
+                <Col className="comments" md="12">
+                    {this.state.comments && <CommentList comments={this.state.comments} filmId={this.props.film.imdbID}/>}
                 </Col>
             </Row>
         )

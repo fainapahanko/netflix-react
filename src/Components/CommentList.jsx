@@ -1,13 +1,17 @@
 import React from 'react'
+import {ListGroup, ListGroupItem} from 'reactstrap'
 
 class CommentList extends React.Component{
-    state = {}
-    componentDidMount = async ()=>{
-        let response = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/" + this.props.commentList.elementId)
+    state = {
     }
+
     render(){
         return(
-            <h1>Lol</h1>
+            <ListGroup>
+                {this.props.comments.map((comment, index)=>
+                <ListGroupItem key={index}>Comment: <br/>{comment.comment} <br/> Rate: <br/> {comment.rate}</ListGroupItem>
+                )}
+            </ListGroup>
         )
     }
 }

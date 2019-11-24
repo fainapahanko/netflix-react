@@ -10,6 +10,7 @@ import Slider from "react-slick";
 class ListFilms extends React.Component{
     state = {
         dragging: false,
+        selectedMovie: ""
     }
     render(){
         const settings = {
