@@ -9,6 +9,7 @@ import SearchedFilms from './SearchedFilms'
 import {Container, Row, InputGroup, 
         InputGroupAddon, InputGroupText, Input,
  } from 'reactstrap'
+import {} from 'react-dom'
 import '../index.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

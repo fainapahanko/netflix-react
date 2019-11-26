@@ -12,6 +12,4 @@ const SingleFilm = props => {
     )
 }
 
-
-
 export default SingleFilm
