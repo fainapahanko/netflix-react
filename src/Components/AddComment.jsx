@@ -8,7 +8,7 @@ class AddComment extends React.Component{
     state = {
         comment: {
             comment: "",
-            rate: "",
+            rate: 1,
             elementId: ""
         },
         error: "",
@@ -24,8 +24,12 @@ class AddComment extends React.Component{
             comment: newComment
         })
     }
+    
     addComment = async(ev) => {
-
+        this.setState({
+            error: "",
+            succes: ""
+        })
         let filmId = this.props.filmId
         let newComment = this.state.comment
         newComment[ev.target.id] = filmId
