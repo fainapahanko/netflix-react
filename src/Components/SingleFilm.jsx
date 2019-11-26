@@ -15,5 +15,4 @@ class SingleFilm extends React.Component{
     }
 }
 
-
 export default SingleFilm

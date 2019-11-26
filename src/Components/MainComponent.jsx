@@ -9,6 +9,7 @@ import SearchedFilms from './SearchedFilms'
 import {Container, Row, InputGroup, Col,
         InputGroupAddon, InputGroupText, Input,
  } from 'reactstrap'
+import {} from 'react-dom'
 import '../index.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -72,7 +73,6 @@ class MainComponent extends React.Component {
                     {this.state.films && this.state.films
                         .map((movie, index) => <SearchedFilms film={movie} key={index} />
                     )}
-    }
                 </Row>
                 {this.state.selectedMovie && <DetailsPage film={this.state.selectedMovie} />}
                 <Row>
