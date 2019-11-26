@@ -6,7 +6,7 @@ import DetailsPage from './DetailsPage';
 import SearchedFilms from './SearchedFilms'
 
 //style+reactstrap
-import {Container, Row, InputGroup, Col,
+import {Container, Row, InputGroup, 
         InputGroupAddon, InputGroupText, Input,
  } from 'reactstrap'
 import {} from 'react-dom'
@@ -21,7 +21,8 @@ class MainComponent extends React.Component {
         movies: [],
         selectedMovie: undefined,
         searchResult: '',
-        films: []
+        films: [],
+        comments: undefined
     }
 
     componentDidMount = async () =>{
@@ -50,12 +51,28 @@ class MainComponent extends React.Component {
     }
 
     onSelectedFilm = async(filmImdbID) => {
+        let username = "user15"
+        let password = "sHHU5KWmVE26avC8"
+        let token = btoa(username + ":" + password)
+
         let response = await fetch("http://www.omdbapi.com/?apikey=ad6a24df&i=" + filmImdbID)
+        let commentResponse = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/" + filmImdbID,{
+            method: "GET",
+            headers: {
+                "authorization" : "Basic " + token,
+                "Content-Type" : "application/json"
+            }
+        })
+
+        let newComments = await commentResponse.json()
         let filmInfo = await response.json()
+
         await this.setState({
-            selectedMovie: filmInfo
+            selectedMovie: filmInfo,
+            comments: newComments
         })
         console.log(filmInfo)
+        console.log(newComments)
     }
 
     render(){
@@ -74,7 +91,7 @@ class MainComponent extends React.Component {
                         .map((movie, index) => <SearchedFilms film={movie} key={index} />
                     )}
                 </Row>
-                {this.state.selectedMovie && <DetailsPage film={this.state.selectedMovie} />}
+                {this.state.selectedMovie && <DetailsPage film={this.state.selectedMovie} comment={this.state.comments}/>}
                 <Row>
                     {this.state.movies.map((film, index) => 
                         <ListFilms onSelected={this.onSelectedFilm} movie={film} key={index}/>
