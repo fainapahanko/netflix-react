@@ -1,8 +1,8 @@
 import React from 'react'
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap'
-import ErrorMessage from './ErrorMessage'
-import SuccesMessage from './SuccesMessage'
-import '../index.css'
+import ErrorMessage from '../Alerts/ErrorMessage'
+import SuccesMessage from '../Alerts/SuccesMessage'
+import '../../index.css'
 
 class AddComment extends React.Component{
     state = {
@@ -23,6 +23,7 @@ class AddComment extends React.Component{
         this.setState({
             comment: newComment
         })
+        console.log(value)
     }
     addComment = async(ev) => {
 
