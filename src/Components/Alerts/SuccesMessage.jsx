@@ -1,6 +1,6 @@
 import React from 'react'
 import {Alert} from 'reactstrap'
-import '../index.css'
+import '../../index.css'
 
 const SuccesMessage = () => {
     return(

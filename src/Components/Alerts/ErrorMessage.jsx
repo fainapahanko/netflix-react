@@ -1,5 +1,5 @@
 import React from 'react'
-import '../index.css'
+import '../../index.css'
 import {Alert} from 'reactstrap'
 
 const ErrorMessage = () => {
@@ -9,5 +9,6 @@ const ErrorMessage = () => {
         </Alert>
     )
 }
+
 
 export default ErrorMessage

@@ -56,3 +56,36 @@ button::before {
 label{
   color: white;
 }
+.jumbotron{
+  height: 800px !important;
+  background-image: url("/assets/img/aneta-pawlik-h5cFbbecEuY-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: 1800px 1100px;
+}
+#root .navbar {
+  background: black !important;
+}
+.nav-item-strivfilx{
+  color:white;
+  font-size: 24px;
+  padding: 10px 30px
+}
+.nav-brand{
+  margin-left: 280px;
+}
+.nav-item-strivfilx:hover{
+  outline: none;
+  color:white;
+  font-size: 24px;
+  padding: 10px 30px
+}
+.container{
+  min-height: 100vh !important;
+}
+.jumbotron-button{
+  height: 50px;
+  background-color: blueviolet !important;
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
