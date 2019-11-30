@@ -7,11 +7,11 @@ class SearchedFilms extends React.Component{
     state = {}
     render () {
         return(
-            <Card className="col-lg-3 col-md-4 col-sm-6 col-12 searched-card">
+            <Card className="col-lg-2 col-md-3 col-sm-4 col-6 searched-card">
                 <Link to={"/details" + this.props.film.imdbID}>
-                <CardImg top height="300px" className="card-with-poster"  src={this.props.film.Poster} alt="Card image cap" />
+                <CardImg top height="300px" className="card-with-poster-searched"  src={this.props.film.Poster} alt="Card image cap" />
                 <CardBody>
-                    <h3>{this.props.film.Title}</h3>
+                    <h3 className="text-searched-movie">{this.props.film.Title}</h3>
                 </CardBody>
                 </Link>
             </Card>

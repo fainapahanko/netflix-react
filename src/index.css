@@ -11,20 +11,16 @@ body {
 .alert{
   margin: 30px 0px;
 }
-.searched-card{
-  color: white;
-}
 .input-group{
   width: 300px !important;
   padding: 30px 0px;
-
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 #root{
-  background-color: rgb(22, 22, 22);
+  background-color: rgb(10, 10, 10);
 }
 .comments {
   margin: 30px 0px
@@ -34,7 +30,7 @@ code {
 }
 .card{
   max-width: 100% !important;
-  background-color: rgb(22, 22, 22) !important;
+  background-color: rgb(10, 10, 10) !important;
   border: none !important;
 }
 .title{
@@ -67,20 +63,29 @@ label{
 }
 .nav-item-strivfilx{
   color:white;
-  font-size: 24px;
+  font-size: 14px;
   padding: 10px 30px
 }
 .nav-brand{
-  margin-left: 280px;
+  margin-left: 7%;
 }
 .nav-item-strivfilx:hover{
   outline: none;
-  color:white;
-  font-size: 24px;
-  padding: 10px 30px
+  color:rgb(145, 145, 145);
+  font-size: 14px;
+  padding: 10px 30px;
+  font-family: 'Raleway', sans-serif;
 }
 .container{
   min-height: 100vh !important;
+}
+.nav-brand, .nav-item {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+}
+.nav-brand:hover {
+  outline: none;
+  text-decoration: none;
 }
 .jumbotron-button{
   height: 50px;
@@ -88,4 +93,30 @@ label{
   width: 30%;
   margin-left: 35%;
   margin-right: 35%;
+}
+.text-searched-movie{
+  font-family: 'Raleway', sans-serif;
+  color:rgba(255,255,255,0.8);
+  font-size: 14px;
+}
+.text-searched-movie:hover{
+  outline: none;
+}
+.card{
+  padding: 0px 3px !important;
+}
+.input-group-text{
+  background-color: brown !important;
+  color:white !important;
+  font-family: 'Raleway', sans-serif;
+}
+.input-group-prepend{
+  border:none !important;
+}
+.card-with-poster-searched{
+  border-radius: 5%;
+  border: 1px solid white;
+}
+.details-item {
+  margin: 30px 0px
 }

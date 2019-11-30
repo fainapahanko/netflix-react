@@ -7,8 +7,6 @@ import Slider from "react-slick";
 class ListFilms extends React.Component{
     state = {
         dragging: false,
-        selectedMovie: "",
-        movies: []
     }
     render(){
         const settings = {
@@ -20,6 +18,7 @@ class ListFilms extends React.Component{
             beforeChange: () => this.setState({ dragging: true }),
             afterChange: () => this.setState({ dragging: false }),
         }
+        console.log(this.props)
         return(
             <Col md="12" className="div-with-slick-carousel">
                 <h2 className="title">{this.props.movie.title}</h2>

@@ -1,7 +1,7 @@
 import React from 'react'
 import ListFilms from '../Movies/ListFilms';
 import SearchedFilms from '../Movies/SearchedFilms';
-import { TraceSpinner } from "react-spinners-kit";
+import { MagicSpinner  } from "react-spinners-kit";
 import{InputGroup, InputGroupAddon, InputGroupText, Input, Row} from 'reactstrap'
 import '../../index.css'
 
@@ -28,21 +28,23 @@ class MoviesList extends React.Component {
                         onChange={this.searchMovie}
                         placeholder="harry potter" />
                 </InputGroup>
-                {this.state.loading && <div className="col-md-12 justify-content-center align-items-center">
-                        <TraceSpinner size={30} color="#73C991"/>
+                {this.state.loading && <div style = {{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+                        <MagicSpinner  size={100} color="#73C991"/>
                     </div>}
                 <Row>
                     {this.state.films && this.state.films
                         .map((movie, index) => <SearchedFilms onSelected={this.onSelectedFilm} film={movie} key={index}/>)}
                 </Row>
-                <Row>
-                    {this.state.movies && this.state.movies.map((film, index) => <ListFilms movie={film} key={index}/>)
+                    {!this.state.loading && this.state.movies.map((film, index) => <ListFilms movie={film} key={index}/>)
                 }
-                </Row>
             </>
         )
     }
     componentDidMount = async () => {
+        await this.fetchingMovies()
+    }
+
+    fetchingMovies = async() => {
         this.setState({
             loading: true
         })
@@ -55,20 +57,31 @@ class MoviesList extends React.Component {
                     title: element,
                     info: filmsInfo.Search,
                 }],
-                loading: false
             })
         })
+        setTimeout(()=> {
+            this.setState({
+                loading: false
+            })
+        },3000)
     }
 
 
+
     searchMovie = async(ev) => {
+        this.setState({
+            loading:true
+        })
         let input = ev.target.value 
         let response = await fetch("http://www.omdbapi.com/?apikey=ad6a24df&s=" + input)
         let movies = await response.json()
-        this.setState({
-            searchResult: input,
-            films: movies.Search,
-        })
+        setTimeout(()=> {
+            this.setState({
+                searchResult: input,
+                films: movies.Search,
+                loading:false
+            })
+        },1000)
     }
 }
 
