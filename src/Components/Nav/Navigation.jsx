@@ -11,6 +11,12 @@ const Navigation = () => {
                 <NavItem>
                     <Link to="/movielist" className="nav-link nav-item-strivfilx">List of movies</Link>
                 </NavItem>
+                <NavItem>
+                    <Link to="/nodejslol" className="nav-link nav-item-strivfilx">new movies</Link>
+                </NavItem>
+                <NavItem>
+                    <Link to="/send-me-pdf" className="nav-link nav-item-strivfilx">Send me pdf</Link>
+                </NavItem>
             </Nav>
         </Navbar>
   )

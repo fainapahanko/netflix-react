@@ -1,11 +1,12 @@
 import React from 'react'
-import {ListGroup, ListGroupItem} from 'reactstrap'
+import {ListGroup} from 'reactstrap'
+import SingleComment from './SingleComment'
 
 const CommentList = props =>{
     return(
         <ListGroup>
             {props.comments.map((comment, index)=>
-            <ListGroupItem key={index}>Comment: <br/>{comment.comment} <br/> Rate: <br/> {comment.rate}</ListGroupItem>
+            <SingleComment key={index} comm={comment} />
             )}
         </ListGroup>
     )

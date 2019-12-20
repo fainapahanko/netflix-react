@@ -17,7 +17,6 @@ class MoviesList extends React.Component {
     }
 
     render(){
-        console.log(this.state.movies)
         return(
             <>
                 <InputGroup>

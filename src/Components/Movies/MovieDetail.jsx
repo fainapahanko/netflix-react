@@ -13,7 +13,6 @@ class MovieDetail extends React.Component {
     }
 
     render(){
-        console.log(this.state)
         return(
             <Row className="details-page">
                 {this.state.loading && <div style = {{position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
@@ -58,7 +57,7 @@ class MovieDetail extends React.Component {
         this.setState({
             loading:true
         })
-        let response = await fetch("http://www.omdbapi.com/?apikey=ad6a24df&i=" + this.props.match.params.movieId)
+        let response = await fetch("http://localhost:3333/media/" + this.props.match.params.movieId)
         let filmsInfo = await response.json();
 
         setTimeout(()=> {
@@ -76,7 +75,7 @@ class MovieDetail extends React.Component {
         let password = "sHHU5KWmVE26avC8"
         let token = btoa(username + ":" + password)
 
-        let commentResponse = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/" + this.props.match.params.movieId,{
+        let commentResponse = await fetch("http://localhost:3333/reviews?elementId=" + this.props.match.params.movieId,{
             method: "GET",
             headers: {
                 "authorization" : "Basic " + token,

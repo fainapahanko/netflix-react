@@ -6,54 +6,38 @@ import '../../index.css'
 
 class AddComment extends React.Component{
     state = {
-        comment: {
-            comment: "",
-            rate: 1,
-            elementId: ""
-        },
+        comment: {},
+        file: null,
         error: "",
         succes: ""
     }
     handleInput = (ev) => {
-        let input = ev.target
-        let value = input.value
-        let comment = input.id
-        let newComment = this.state.comment
-        newComment[comment] = value
+        ev.preventDefault()
+        if(ev.target.id === "image"){
+            this.setState({
+                file: ev.target.files[0]
+            })
+        }
         this.setState({
-            comment: newComment
+            comment: Object.assign(this.state.comment, {[ev.target.id]: ev.target.value})
         })
-        console.log(value)
     }
     
-    addComment = async(ev) => {
+    addComment = async(e) => {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("image", this.state.file)
+        formData.append("rate",this.state.comment.rate)
+        formData.append("comment",this.state.comment.comment)
         this.setState({
             error: "",
             succes: ""
         })
-        let filmId = this.props.filmId
-        let newComment = this.state.comment
-        newComment[ev.target.id] = filmId
-        this.setState({
-            comment: newComment,
-            error: "",
-            succes: ""
-        })
-
-        let username = "user15"
-        let password = "sHHU5KWmVE26avC8"
-        let token = btoa(username + ":" + password)
-        let response = await fetch("https://strive-school-testing-apis.herokuapp.com/api/comments/",{
+        let response = await fetch("http://localhost:3333/reviews/" + this.props.filmId,{
             method: "POST",
-            body: JSON.stringify(this.state.comment),
-            headers: {
-                "authorization" : "Basic " + token,
-                "Content-Type" : "application/json"
-            }
+            body: formData
         })
-
         if(response.ok){
-            console.log(this.state.comment)
             this.setState({
                 comment: {
                     comment: "",
@@ -63,7 +47,6 @@ class AddComment extends React.Component{
                 succes: "succes"
             })
         } else {
-            console.log("smth went wrong")
             this.setState({
                 comment: {
                     comment: "",
@@ -76,7 +59,7 @@ class AddComment extends React.Component{
     }
     render(){
         return(
-            <Form>
+            <Form onSubmit={this.addComment}>
                 <FormGroup>
                     <Label for="comment">Your comment</Label>
                     <Input 
@@ -104,7 +87,11 @@ class AddComment extends React.Component{
                         <option>5</option>
                     </Input>
                 </FormGroup>
-                <Button onClick={this.addComment} id="elementId" outline color="danger">Add comments</Button>
+                <FormGroup>
+                    <Label>Image</Label>
+                    <Input onChange={this.handleInput} type="file" id="image"></Input>
+                </FormGroup>
+                <Button type="submit" id="elementId" outline color="danger">Add comments</Button>
                 {this.state.error && <ErrorMessage />}
                 {this.state.succes && <SuccesMessage />}
             </Form>
